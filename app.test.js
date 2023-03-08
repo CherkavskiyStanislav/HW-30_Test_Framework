@@ -16,7 +16,7 @@ describe("validateEmail", function() {
             assert.equal(validateEmail(true), false, 'boolean error');
             assert.equal(validateEmail({}), false, 'object error');
         });
-        it('not an empty string', function() {
+        it('not just whitespace', function() {
             assert.equal(validateEmail('     '), false);
         });
         it('length of string', function () {
@@ -24,15 +24,15 @@ describe("validateEmail", function() {
         })
   })
     describe('valid data', function () {
-        it('Don\'t have the @ or @ the first character', function () {
-            assert.isFalse(validateEmail('emailgmail.com'), 'Don\'t have the @');
+        it('No @ or @ the first character', function () {
+            assert.isFalse(validateEmail('emailgmail.com'), 'no @');
             assert.isFalse(validateEmail('@emailgmail.com'), '@ the first character')
         })
         it('Don\'t have two or more \"@\"', function () {
             assert.isFalse(validateEmail('@@'), 'more @');
         })
         it('the dot is after the @ and not a \".@\"', function () {
-            assert.isFalse(validateEmail('email.@gmailcom'), 'wrong with dot \',@\' or after domain')
+            assert.isFalse(validateEmail('email.@gmailcom'), 'wrong dot position')
         })
     })
 })
